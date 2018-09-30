@@ -74,7 +74,7 @@ print(f'''Financial Analysis
 ----------------------------''')
 print(f"Total months: {countRow}")
 print(f"Total: ${totalNetAmount}")
-print("Average change: $"+ str(round(averageChange,2)))
+print(f"Average change: ${round(averageChange,2)}")
 print(f'Greatest Increase in Profits: {gIMonth} (${gIAmt})')
 print(f'Greatest Decrease in Profits: {gDMonth} (${gDAmt})')
 
