@@ -19,7 +19,7 @@ gDRow = 0
 gIMonth = ""
 gDMonth = ""
 #Reading using CSV module
-with open(csvpath, newline='') as csvfile:
+with open(csvpath,'r', newline='') as csvfile:
     # CSV reader specifies delimiter and variable that holds contents
     csvreader = csv.reader(csvfile, delimiter=',')
     # Read the header row first 
@@ -69,7 +69,7 @@ gIMonth = datetime.datetime.strftime(dt,'%b-%Y')
 dt2 = datetime.datetime.strptime(gDMonth,'%b-%y')
 gDMonth = datetime.datetime.strftime(dt2,'%b-%Y')
 
-#Print Output
+# Print Output
 print(f'''Financial Analysis
 ----------------------------''')
 print(f"Total months: {countRow}")
@@ -78,3 +78,16 @@ print(f"Average change: ${round(averageChange,2)}")
 print(f'Greatest Increase in Profits: {gIMonth} (${gIAmt})')
 print(f'Greatest Decrease in Profits: {gDMonth} (${gDAmt})')
 
+# Print Output to CSV file
+# Set variable for output file
+output_file = os.path.join("Fin_Analysis.csv")
+# Open output file
+with open(output_file,'w',newline='') as datafile:
+    writer = csv.writer(datafile)
+    # Write Heading
+    writer.writerow(["Financial Analysis"])
+    writer.writerow(["Total Months",countRow])
+    writer.writerow(["Total",totalNetAmount])
+    writer.writerow(["Average Change",round(averageChange,2)])
+    writer.writerow(["Greatest Increase in Profits", gIMonth, gIAmt])
+    writer.writerow(["Greatest Decrease in Profits", gDMonth, gDAmt])    
